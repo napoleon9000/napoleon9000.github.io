@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CYY Medication Reminder - Support</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+            min-height: 100vh;
+            box-shadow: 0 0 30px rgba(0,0,0,0.1);
+        }
+        
+        .header {
+            text-align: center;
+            padding: 40px 0;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            margin: -20px -20px 40px -20px;
+            border-radius: 0 0 20px 20px;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .app-icon {
+            width: 80px;
+            height: 80px;
+            background: white;
+            border-radius: 20px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .section {
+            margin-bottom: 40px;
+            padding: 30px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        
+        .section h2 {
+            color: #667eea;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .section h2::before {
+            content: '';
+            width: 4px;
+            height: 30px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            margin-right: 15px;
+            border-radius: 2px;
+        }
+        
+        .section h3 {
+            color: #555;
+            font-size: 1.3em;
+            margin: 25px 0 15px 0;
+            font-weight: 600;
+        }
+        
+        .section p, .section li {
+            font-size: 1.1em;
+            margin-bottom: 12px;
+            color: #555;
+        }
+        
+        .section ul {
+            padding-left: 25px;
+            margin-bottom: 20px;
+        }
+        
+        .section li {
+            margin-bottom: 8px;
+        }
+        
+        .troubleshooting-item {
+            background: white;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .troubleshooting-item h4 {
+            color: #667eea;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .faq-item {
+            background: white;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            border: 1px solid #e9ecef;
+        }
+        
+        .faq-question {
+            color: #667eea;
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .contact-info {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+        }
+        
+        .contact-info h2 {
+            color: white;
+            margin-bottom: 20px;
+        }
+        
+        .contact-info h2::before {
+            background: white;
+        }
+        
+        .contact-info a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 12px 25px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 25px;
+            display: inline-block;
+            margin: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-info a:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        
+        .feature-card h4 {
+            color: #667eea;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .feature-emoji {
+            font-size: 2em;
+            margin-bottom: 15px;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .section {
+                padding: 20px;
+            }
+            
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="app-icon">💊</div>
+            <h1>CYY Medication Reminder</h1>
+            <p>Your Personal Health Companion</p>
+        </div>
+
+        <div class="section">
+            <h2>About CYY Medication Reminder</h2>
+            <p>CYY Medication Reminder is a comprehensive medication management app designed to help you never miss a dose again. With smart reminders, photo evidence, social support, and secure cloud backup, we make medication adherence simple and effective.</p>
+            
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-emoji">🔔</div>
+                    <h4>Smart Reminders</h4>
+                    <p>Customizable notifications with retry logic and critical alerts</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-emoji">📸</div>
+                    <h4>Photo Evidence</h4>
+                    <p>Visual proof of medication intake with timestamp tracking</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-emoji">👥</div>
+                    <h4>Social Support</h4>
+                    <p>Connect with friends and family for mutual accountability</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-emoji">☁️</div>
+                    <h4>Cloud Backup</h4>
+                    <p>Secure synchronization across all your devices</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Troubleshooting</h2>
+            
+            <div class="troubleshooting-item">
+                <h4>Notifications Not Working</h4>
+                <p><strong>Solution:</strong> Check your device notification settings and ensure CYY has permission to send notifications. For critical reminders, make sure "Allow Critical Alerts" is enabled in iOS Settings > Notifications > CYY.</p>
+            </div>
+            
+            <div class="troubleshooting-item">
+                <h4>Photos Not Saving</h4>
+                <p><strong>Solution:</strong> Verify that CYY has camera and photo library permissions in your device settings. Go to Settings > Privacy > Camera and ensure CYY is enabled.</p>
+            </div>
+            
+            <div class="troubleshooting-item">
+                <h4>Cloud Sync Issues</h4>
+                <p><strong>Solution:</strong> Ensure you're connected to the internet and logged into your account. Try refreshing the sync in Settings > Cloud Backup. If conflicts appear, use the conflict resolution dialog to choose the correct data.</p>
+            </div>
+            
+            <div class="troubleshooting-item">
+                <h4>QR Code Scanner Not Working</h4>
+                <p><strong>solution:</strong> Make sure CYY has camera permissions and you're in a well-lit environment. Clean your camera lens and try holding the QR code steady within the scanning frame.</p>
+            </div>
+            
+            <div class="troubleshooting-item">
+                <h4>Friend Invitations Not Working</h4>
+                <p><strong>Solution:</strong> Check your internet connection and ensure both users have the latest version of the app. Invite codes expire after 7 days, so generate a new one if needed.</p>
+            </div>
+            
+            <div class="troubleshooting-item">
+                <h4>App Crashes or Freezes</h4>
+                <p><strong>Solution:</strong> Force close the app and restart it. If the problem persists, try restarting your device. Make sure you have the latest version of the app installed.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Frequently Asked Questions</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">Q: Is my health data secure?</div>
+                <p>A: Yes! All your health data is stored locally on your device and encrypted during cloud backup. We use industry-standard security practices and never share your personal health information.</p>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Q: Can I use the app without creating an account?</div>
+                <p>A: Absolutely! You can use CYY completely offline without any account. Creating an account is only required for social features and cloud backup.</p>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Q: How many medications can I track?</div>
+                <p>A: There's no limit! You can add as many medications as you need, each with their own schedule, reminders, and settings.</p>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Q: Can I set different reminder times for different days?</div>
+                <p>A: Yes! Each medication can have a flexible schedule with different times for different days of the week.</p>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Q: What happens if I miss a notification?</div>
+                <p>A: CYY will automatically send retry notifications based on your settings (up to 99 times with customizable intervals). You can also mark medications as taken or skipped later in the app.</p>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Q: Can I share my medication data with my doctor?</div>
+                <p>A: While CYY doesn't directly integrate with healthcare systems, you can export your medication history and compliance data to share with your healthcare provider.</p>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Q: Is the app available in other languages?</div>
+                <p>A: Yes! CYY supports English, Simplified Chinese, and Traditional Chinese, with automatic detection of your device's language preference.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Getting Started</h2>
+            <h3>Setting Up Your First Medication</h3>
+            <ul>
+                <li>Tap the "+" button on the Home screen</li>
+                <li>Enter your medication name and choose a color</li>
+                <li>Set your reminder times and days</li>
+                <li>Configure retry notifications (optional)</li>
+                <li>Save and start receiving reminders!</li>
+            </ul>
+            
+            <h3>Adding Friends for Support</h3>
+            <ul>
+                <li>Go to the Friends tab</li>
+                <li>Tap "Add Friend" and choose QR code or invite link</li>
+                <li>Share the code/link with your friend</li>
+                <li>Once connected, you can share medications and send reminders</li>
+            </ul>
+            
+            <h3>Using Photo Evidence</h3>
+            <ul>
+                <li>When you receive a medication reminder, tap "Photo"</li>
+                <li>Take a picture of your medication or yourself taking it</li>
+                <li>The photo will be saved with a timestamp for your records</li>
+                <li>View your photo history in the Track screen</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Privacy Policy</h2>
+            <p>CYY Medication Reminder is committed to protecting your privacy. We collect minimal data necessary for app functionality and never sell or share your personal health information with third parties.</p>
+            
+            <h3>Data We Collect:</h3>
+            <ul>
+                <li>Medication names, schedules, and reminder settings (stored locally)</li>
+                <li>Photos you choose to take (stored locally)</li>
+                <li>Account information if you choose to create an account (for social features)</li>
+                <li>Anonymous usage analytics to improve the app</li>
+            </ul>
+            
+            <h3>Data Usage:</h3>
+            <ul>
+                <li>All medication data is stored primarily on your device</li>
+                <li>Cloud backup is optional and encrypted</li>
+                <li>Social features require account creation and secure data sharing</li>
+                <li>We never access your medication data without your explicit consent</li>
+            </ul>
+        </div>
+
+        <div class="contact-info">
+            <h2>Need More Help?</h2>
+            <p>If you can't find the answer to your question here, we're here to help!</p>
+            <a href="mailto:support@cyymeds.com">Email Support</a>
+            <a href="https://github.com/cyymeds/issues">Report Issue</a>
+            <p style="margin-top: 20px; opacity: 0.8;">
+                Version 1.0 | Last updated: January 2025
+            </p>
+        </div>
+    </div>
+</body>
+</html>

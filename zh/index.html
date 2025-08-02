@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CYY 用药提醒器 - 支持中心</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+            min-height: 100vh;
+            box-shadow: 0 0 30px rgba(0,0,0,0.1);
+        }
+        
+        .header {
+            text-align: center;
+            padding: 40px 0;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            margin: -20px -20px 40px -20px;
+            border-radius: 0 0 20px 20px;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .app-icon {
+            width: 80px;
+            height: 80px;
+            background: white;
+            border-radius: 20px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .section {
+            margin-bottom: 40px;
+            padding: 30px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        
+        .section h2 {
+            color: #667eea;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .section h2::before {
+            content: '';
+            width: 4px;
+            height: 30px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            margin-right: 15px;
+            border-radius: 2px;
+        }
+        
+        .section h3 {
+            color: #555;
+            font-size: 1.3em;
+            margin: 25px 0 15px 0;
+            font-weight: 600;
+        }
+        
+        .section p, .section li {
+            font-size: 1.1em;
+            margin-bottom: 12px;
+            color: #555;
+        }
+        
+        .section ul {
+            padding-left: 25px;
+            margin-bottom: 20px;
+        }
+        
+        .section li {
+            margin-bottom: 8px;
+        }
+        
+        .troubleshooting-item {
+            background: white;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .troubleshooting-item h4 {
+            color: #667eea;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .faq-item {
+            background: white;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            border: 1px solid #e9ecef;
+        }
+        
+        .faq-question {
+            color: #667eea;
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .contact-info {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+        }
+        
+        .contact-info h2 {
+            color: white;
+            margin-bottom: 20px;
+        }
+        
+        .contact-info h2::before {
+            background: white;
+        }
+        
+        .contact-info a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 12px 25px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 25px;
+            display: inline-block;
+            margin: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-info a:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        
+        .feature-card h4 {
+            color: #667eea;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .feature-emoji {
+            font-size: 2em;
+            margin-bottom: 15px;
+        }
+        
+        .language-switch {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255,255,255,0.9);
+            padding: 10px 15px;
+            border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .language-switch a {
+            color: #667eea;
+            text-decoration: none;
+            margin: 0 5px;
+            font-weight: 500;
+        }
+        
+        .language-switch a.active {
+            color: #764ba2;
+            font-weight: 700;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .section {
+                padding: 20px;
+            }
+            
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .language-switch {
+                position: relative;
+                top: auto;
+                right: auto;
+                margin-bottom: 20px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="language-switch">
+        <a href="support-website-english.html">English</a> | 
+        <a href="#" class="active">简体中文</a> | 
+        <a href="#traditional" onclick="switchToTraditional()">繁體中文</a>
+    </div>
+
+    <div class="container" id="simplified">
+        <div class="header">
+            <div class="app-icon">💊</div>
+            <h1>CYY 用药提醒器</h1>
+            <p>您的贴心健康伙伴</p>
+        </div>
+
+        <div class="section">
+            <h2>关于 CYY 用药提醒器</h2>
+            <p>CYY 用药提醒器是一款全面的用药管理应用，旨在帮助您再也不会错过服药时间。通过智能提醒、拍照取证、社交支持和安全云备份，我们让用药依从性变得简单有效。</p>
+            
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-emoji">🔔</div>
+                    <h4>智能提醒</h4>
+                    <p>可自定义的通知系统，具备重试逻辑和重要提醒功能</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-emoji">📸</div>
+                    <h4>拍照取证</h4>
+                    <p>用药的视觉证明，带时间戳跟踪功能</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-emoji">👥</div>
+                    <h4>社交支持</h4>
+                    <p>与朋友家人连接，相互监督用药</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-emoji">☁️</div>
+                    <h4>云端备份</h4>
+                    <p>所有设备间的安全同步</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>故障排除</h2>
+            
+            <div class="troubleshooting-item">
+                <h4>通知不工作</h4>
+                <p><strong>解决方案：</strong>检查您的设备通知设置，确保 CYY 有发送通知的权限。对于重要提醒，请确保在 iOS 设置 > 通知 > CYY 中启用"允许重要提醒"。</p>
+            </div>
+            
+            <div class="troubleshooting-item">
+                <h4>照片无法保存</h4>
+                <p><strong>解决方案：</strong>验证 CYY 在您的设备设置中拥有相机和照片库权限。前往设置 > 隐私 > 相机，确保 CYY 已启用。</p>
+            </div>
+            
+            <div class="troubleshooting-item">
+                <h4>云同步问题</h4>
+                <p><strong>解决方案：</strong>确保您已连接到互联网并登录到您的帐户。尝试在设置 > 云备份中刷新同步。如果出现冲突，请使用冲突解决对话框选择正确的数据。</p>
+            </div>
+            
+            <div class="troubleshooting-item">
+                <h4>二维码扫描器不工作</h4>
+                <p><strong>解决方案：</strong>确保 CYY 拥有相机权限，并且您处于光线充足的环境中。清洁相机镜头，尝试将二维码稳定地放在扫描框内。</p>
+            </div>
+            
+            <div class="troubleshooting-item">
+                <h4>好友邀请无效</h4>
+                <p><strong>解决方案：</strong>检查您的网络连接，确保两个用户都安装了最新版本的应用。邀请码在7天后过期，如需要请生成新的邀请码。</p>
+            </div>
+            
+            <div class="troubleshooting-item">
+                <h4>应用崩溃或卡顿</h4>
+                <p><strong>解决方案：</strong>强制关闭应用并重新启动。如果问题持续存在，尝试重启您的设备。确保您安装了最新版本的应用。</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>常见问题</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">问：我的健康数据安全吗？</div>
+                <p>答：是的！您的所有健康数据都本地存储在您的设备上，云备份时会进行加密。我们使用行业标准的安全实践，绝不会分享您的个人健康信息。</p>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">问：我可以不创建账户就使用应用吗？</div>
+                <p>答：当然可以！您可以完全离线使用 CYY 而无需任何账户。只有社交功能和云备份才需要创建账户。</p>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">问：我可以跟踪多少种药物？</div>
+                <p>答：没有限制！您可以添加任意数量的药物，每种都有自己的时间安排、提醒和设置。</p>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">问：我可以为不同的天设置不同的提醒时间吗？</div>
+                <p>答：可以！每种药物都可以有灵活的时间安排，在一周的不同日子设置不同的时间。</p>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">问：如果我错过了通知会怎样？</div>
+                <p>答：CYY 会根据您的设置自动发送重试通知（最多99次，可自定义间隔）。您也可以稍后在应用中将药物标记为已服用或已跳过。</p>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">问：我可以与医生分享我的用药数据吗？</div>
+                <p>答：虽然 CYY 不直接与医疗系统集成，但您可以导出用药历史和依从性数据与您的医疗服务提供者分享。</p>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">问：应用支持其他语言吗？</div>
+                <p>答：是的！CYY 支持简体中文、繁体中文和英文，可自动检测您设备的语言偏好。</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>入门指南</h2>
+            <h3>设置您的第一个药物</h3>
+            <ul>
+                <li>在主屏幕点击"+"按钮</li>
+                <li>输入药物名称并选择颜色</li>
+                <li>设置提醒时间和日期</li>
+                <li>配置重试通知（可选）</li>
+                <li>保存并开始接收提醒！</li>
+            </ul>
+            
+            <h3>添加朋友获得支持</h3>
+            <ul>
+                <li>进入好友标签页</li>
+                <li>点击"添加好友"并选择二维码或邀请链接</li>
+                <li>与您的朋友分享代码/链接</li>
+                <li>连接成功后，您可以分享药物并发送提醒</li>
+            </ul>
+            
+            <h3>使用拍照取证</h3>
+            <ul>
+                <li>收到用药提醒时，点击"拍照"</li>
+                <li>拍摄您的药物或服药的照片</li>
+                <li>照片将带时间戳保存到您的记录中</li>
+                <li>在跟踪屏幕中查看您的照片历史</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>隐私政策</h2>
+            <p>CYY 用药提醒器致力于保护您的隐私。我们只收集应用功能必需的最少数据，绝不会向第三方出售或分享您的个人健康信息。</p>
+            
+            <h3>我们收集的数据：</h3>
+            <ul>
+                <li>药物名称、时间安排和提醒设置（本地存储）</li>
+                <li>您选择拍摄的照片（本地存储）</li>
+                <li>账户信息（如果您选择创建账户用于社交功能）</li>
+                <li>匿名使用分析数据以改善应用</li>
+            </ul>
+            
+            <h3>数据使用：</h3>
+            <ul>
+                <li>所有用药数据主要存储在您的设备上</li>
+                <li>云备份是可选的且经过加密</li>
+                <li>社交功能需要创建账户并进行安全数据共享</li>
+                <li>未经您明确同意，我们绝不会访问您的用药数据</li>
+            </ul>
+        </div>
+
+        <div class="contact-info">
+            <h2>需要更多帮助？</h2>
+            <p>如果您在这里找不到问题的答案，我们随时为您提供帮助！</p>
+            <a href="mailto:support@cyymeds.com">邮件支持</a>
+            <a href="https://github.com/cyymeds/issues">报告问题</a>
+            <p style="margin-top: 20px; opacity: 0.8;">
+                版本 1.0 | 最后更新：2025年1月
+            </p>
+        </div>
+    </div>
+
+    <!-- Traditional Chinese Version (Hidden by default) -->
+    <div class="container" id="traditional" style="display: none;">
+        <div class="header">
+            <div class="app-icon">💊</div>
+            <h1>CYY 用藥提醒器</h1>
+            <p>您的貼心健康夥伴</p>
+        </div>
+
+        <div class="section">
+            <h2>關於 CYY 用藥提醒器</h2>
+            <p>CYY 用藥提醒器是一款全面的用藥管理應用，旨在幫助您再也不會錯過服藥時間。通過智能提醒、拍照取證、社交支援和安全雲備份，我們讓用藥依從性變得簡單有效。</p>
+            
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-emoji">🔔</div>
+                    <h4>智能提醒</h4>
+                    <p>可自訂的通知系統，具備重試邏輯和重要提醒功能</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-emoji">📸</div>
+                    <h4>拍照取證</h4>
+                    <p>用藥的視覺證明，帶時間戳追蹤功能</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-emoji">👥</div>
+                    <h4>社交支援</h4>
+                    <p>與朋友家人連接，相互監督用藥</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-emoji">☁️</div>
+                    <h4>雲端備份</h4>
+                    <p>所有裝置間的安全同步</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>故障排除</h2>
+            
+            <div class="troubleshooting-item">
+                <h4>通知不工作</h4>
+                <p><strong>解決方案：</strong>檢查您的裝置通知設定，確保 CYY 有發送通知的權限。對於重要提醒，請確保在 iOS 設定 > 通知 > CYY 中啟用「允許重要提醒」。</p>
+            </div>
+            
+            <div class="troubleshooting-item">
+                <h4>照片無法儲存</h4>
+                <p><strong>解決方案：</strong>驗證 CYY 在您的裝置設定中擁有相機和照片庫權限。前往設定 > 隱私 > 相機，確保 CYY 已啟用。</p>
+            </div>
+            
+            <div class="troubleshooting-item">
+                <h4>雲同步問題</h4>
+                <p><strong>解決方案：</strong>確保您已連接到網際網路並登入到您的帳戶。嘗試在設定 > 雲備份中重新整理同步。如果出現衝突，請使用衝突解決對話框選擇正確的資料。</p>
+            </div>
+            
+            <div class="troubleshooting-item">
+                <h4>二維碼掃描器不工作</h4>
+                <p><strong>解決方案：</strong>確保 CYY 擁有相機權限，並且您處於光線充足的環境中。清潔相機鏡頭，嘗試將二維碼穩定地放在掃描框內。</p>
+            </div>
+            
+            <div class="troubleshooting-item">
+                <h4>好友邀請無效</h4>
+                <p><strong>解決方案：</strong>檢查您的網路連接，確保兩個使用者都安裝了最新版本的應用。邀請碼在7天後過期，如需要請產生新的邀請碼。</p>
+            </div>
+            
+            <div class="troubleshooting-item">
+                <h4>應用當機或卡頓</h4>
+                <p><strong>解決方案：</strong>強制關閉應用並重新啟動。如果問題持續存在，嘗試重啟您的裝置。確保您安裝了最新版本的應用。</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>常見問題</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">問：我的健康資料安全嗎？</div>
+                <p>答：是的！您的所有健康資料都本地存儲在您的裝置上，雲備份時會進行加密。我們使用業界標準的安全實務，絕不會分享您的個人健康資訊。</p>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">問：我可以不建立帳戶就使用應用嗎？</div>
+                <p>答：當然可以！您可以完全離線使用 CYY 而無需任何帳戶。只有社交功能和雲備份才需要建立帳戶。</p>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">問：我可以追蹤多少種藥物？</div>
+                <p>答：沒有限制！您可以新增任意數量的藥物，每種都有自己的時間安排、提醒和設定。</p>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">問：我可以為不同的天設定不同的提醒時間嗎？</div>
+                <p>答：可以！每種藥物都可以有靈活的時間安排，在一週的不同日子設定不同的時間。</p>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">問：如果我錯過了通知會怎樣？</div>
+                <p>答：CYY 會根據您的設定自動發送重試通知（最多99次，可自訂間隔）。您也可以稍後在應用中將藥物標記為已服用或已跳過。</p>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">問：我可以與醫生分享我的用藥資料嗎？</div>
+                <p>答：雖然 CYY 不直接與醫療系統整合，但您可以匯出用藥歷史和依從性資料與您的醫療服務提供者分享。</p>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">問：應用支援其他語言嗎？</div>
+                <p>答：是的！CYY 支援繁體中文、簡體中文和英文，可自動檢測您裝置的語言偏好。</p>
+            </div>
+        </div>
+
+        <div class="contact-info">
+            <h2>需要更多幫助？</h2>
+            <p>如果您在這裡找不到問題的答案，我們隨時為您提供協助！</p>
+            <a href="mailto:support@cyymeds.com">郵件支援</a>
+            <a href="https://github.com/cyymeds/issues">回報問題</a>
+            <p style="margin-top: 20px; opacity: 0.8;">
+                版本 1.0 | 最後更新：2025年1月
+            </p>
+        </div>
+    </div>
+
+    <script>
+        function switchToTraditional() {
+            document.getElementById('simplified').style.display = 'none';
+            document.getElementById('traditional').style.display = 'block';
+            document.querySelector('.language-switch a[href="#traditional"]').classList.add('active');
+            document.querySelector('.language-switch a[href="#"].active').classList.remove('active');
+        }
+        
+        function switchToSimplified() {
+            document.getElementById('traditional').style.display = 'none';
+            document.getElementById('simplified').style.display = 'block';
+            document.querySelector('.language-switch a[href="#"]').classList.add('active');
+            document.querySelector('.language-switch a[href="#traditional"].active').classList.remove('active');
+        }
+        
+        // Add click event to simplified Chinese link
+        document.querySelector('.language-switch a[href="#"]').addEventListener('click', function(e) {
+            e.preventDefault();
+            switchToSimplified();
+        });
+    </script>
+</body>
+</html>
